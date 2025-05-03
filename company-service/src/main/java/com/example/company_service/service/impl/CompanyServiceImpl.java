@@ -77,6 +77,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void deleteCompanyById(Long id) {
-        
+        if (!companyRepository.existsById(id)) {
+            throw new NotFound("Company not found");
+        }
+
+        companyRepository.deleteById(id);
     }
 }
